@@ -41,9 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ArrayList<Person> persons = new ArrayList<>();
                 persons.add(new Person("Nguyen Van Teo",20));
-                Intent intent = new Intent(MainActivity.this,MainActivity2.class);
-                intent.putExtra(AppConstant.KEY_OBJECT, persons);
-                startActivity(intent);
+                sendIntent(AppConstant.KEY_OBJECT, persons);
             }
         });
     }
@@ -54,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
         }
         if (value instanceof int[]){
             intent.putExtra(key,(int[]) value);
+        }
+        if (value instanceof ArrayList<?>){
+            if (value instanceof Object){
+                intent.putExtra(key,(ArrayList<Person>) value);
+            }
         }
         startActivity(intent);
     }
