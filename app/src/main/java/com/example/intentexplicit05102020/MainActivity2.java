@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity2 extends AppCompatActivity {
 
     @Override
@@ -13,7 +15,7 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        // 1 : Nhan kieu string
+//         1 : Nhan kieu string
 //        Intent intent = getIntent();
 //        if (intent != null){
 //            String message = intent.getStringExtra(AppConstant.KEY_STRING);
@@ -26,10 +28,10 @@ public class MainActivity2 extends AppCompatActivity {
 //            Toast.makeText(this, arrNums.length + "", Toast.LENGTH_SHORT).show();
 //        }
         //3 : Nhan kieu object
-        Intent intent = getIntent();
-        if (intent != null){
-            Person person = (Person) intent.getSerializableExtra(AppConstant.KEY_OBJECT);
-            Toast.makeText(this, person.name + "", Toast.LENGTH_SHORT).show();
-        }
+//        Intent intent = getIntent();
+//        if (intent != null){
+//            ArrayList<Person> persons = intent.getParcelableArrayListExtra(AppConstant.KEY_OBJECT);
+//            Toast.makeText(this, persons.size() + "", Toast.LENGTH_SHORT).show();
+//        }
     }
 }

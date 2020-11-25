@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,9 +25,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnString.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,MainActivity2.class);
-                intent.putExtra(AppConstant.KEY_STRING,"Hello Main2");
-                startActivity(intent);
+                sendIntent(AppConstant.KEY_STRING,"Hello Main2");
             }
         });
 
@@ -34,19 +33,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int[] arrNums = {1,2,3,4,5,6,7,8,9,10};
-                Intent intent = new Intent(MainActivity.this,MainActivity2.class);
-                intent.putExtra(AppConstant.KEY_ARRAY,arrNums);
-                startActivity(intent);
+                sendIntent(AppConstant.KEY_ARRAY,arrNums);
             }
         });
         mBtnObject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Person person = new Person("Nguyen Van Teo",20);
+                ArrayList<Person> persons = new ArrayList<>();
+                persons.add(new Person("Nguyen Van Teo",20));
                 Intent intent = new Intent(MainActivity.this,MainActivity2.class);
-                intent.putExtra(AppConstant.KEY_OBJECT, person);
+                intent.putExtra(AppConstant.KEY_OBJECT, persons);
                 startActivity(intent);
             }
         });
+    }
+    private <T> void sendIntent(String key , T value){
+        Intent intent = new Intent(MainActivity.this,MainActivity2.class);
+        if (value instanceof String){
+            intent.putExtra(key,(String)value);
+        }
+        if (value instanceof int[]){
+            intent.putExtra(key,(int[]) value);
+        }
+        startActivity(intent);
     }
 }
